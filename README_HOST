@@ -1,0 +1,7 @@
+The host is the second client connected to the broker. It is a subsriber which subscribes to the topic 'doorStatus' and displays the current status of the door. 
+
+Execution: 
+
+	>Navigate to the folder containing cliet2.py
+	>exceute client2.py
+

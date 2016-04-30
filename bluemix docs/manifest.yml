@@ -1,0 +1,11 @@
+applications:
+- path: .
+  memory: 128M
+  no-route: false
+  instances: 1
+  domain: mybluemix.net
+  name: Doorknob
+  host: doorknob
+  disk_quota: 1024M
+  services:
+   - iot-python

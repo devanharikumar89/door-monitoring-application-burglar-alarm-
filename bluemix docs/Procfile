@@ -1,0 +1,2 @@
+web: make
+web: python webpage.py

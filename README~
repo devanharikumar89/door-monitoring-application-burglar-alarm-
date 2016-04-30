@@ -1,0 +1,39 @@
+DoorMonitor
+
+This is an implementation of a Door Monitor using an IOT device(RaspberryPi), Classification Techniques(Libsvm) and a Python based IOT Cloud Platform (PaaS IBM Bluemix). 
+
+Requirements: 
+	>RaspberryPi
+	>Initial measurement unit (IMU : 3-axis Gyrometer and 3-axis accelerometer) 
+	>IBM Bluemix 
+	>Libsvm
+	>Flask
+
+Overview: 
+
+The IMU is used to obtain the initial readings which would be used to determine the position of the door (open/closed). The RaspberryPi is used to scale the readings obtained and publish them to the topic 'doorData'.The MQTT broker is running on the IBM Bluemix platform. 'cloudClient' is an MQTT subscriber residing within the broker. 'cloudClient' contains the Libsvm model and predicts the status of the door depending on the data received by subscribing to the topic 'doorData'. The verdict as predicted by the model is published to the topic 'doorStatus'. 'cloudClient' also writes the data, the verdict and a timestamp(GMT) to a file. 'webpage.py' reads from this file and updates the webpage on every refresh. The Host(Laptop) subscribes to 'doorStatus' and displays the current status of the door along with the timestamp(GMT). 
+
+
+Design Choices: 
+
+>IOT Device chosen: RaspberryPi due to GUI availability and higher efficiency. 
+
+>cloudClient :Since the broker does not have direct access to the topics to which clients publish, a decision was made to have a pseudo client running at the broker to perform the prediction. 
+
+>Declaration of stationary status: Only when 3 consecutive readings by the IMU record a reading below the threshold, the door can be considered to be stationary. This is done to prevent reporting of wrong decisions due to multiple oscillations.
+
+>Dataset: Each reading is converted to a dataset with only 4 datapoints(a decision made intuitively and experimentally). This is done to ensure that irrespective of the speed and duration of motion, the number of datapoints used to make a decision remains constant. 
+
+
+Steps for Execution:
+	>Attach the device to the door at a distance of 2 feet from the hinge of the door. 
+	>Make sure the broker is running on the IBM Bluemix platform. 
+	>Execute the code on the Host. (client2.py) 
+	>Execute the code on the RaspberryPi (client.py)
+
+ 
+
+
+
+
+

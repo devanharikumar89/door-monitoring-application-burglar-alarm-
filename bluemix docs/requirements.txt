@@ -1,0 +1,3 @@
+Flask
+ibmiotf
+-e git+https://github.com/Salinger/libsvm-python.git#egg=libsvm-python

@@ -1,0 +1,6 @@
+The IOT device chosen to collect the data is a a RaspberryPi. The IMU is connected to the RPi. It collects muliple readings and provides this data to the Rpi. The Rpi creates a dataset with 4 datapoints and publishes this to the broker under the topic doorData. 
+
+Execution: 
+
+	>Navigate to the folder which contains the code client.py
+	>Exceute client.py
